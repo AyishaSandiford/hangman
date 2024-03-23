@@ -1,6 +1,7 @@
 import random
 
 from word_list import hidden_word_list_level_one
+from hang_stage import stages
 
 print('Welcome to hangman')
   
@@ -38,6 +39,7 @@ while '_' in guessed_word and user_letter != '.' and bad_guesses < 6:
       guessed_word[letterLocation] = user_letter
     print(' '.join(guessed_word))
   else:
+    print(stages[bad_guesses])
     bad_guesses += 1
     if bad_guesses == 0:
       print('you lost')
