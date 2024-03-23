@@ -28,6 +28,9 @@ while '_' in guessed_word and user_letter != '.' and bad_guesses < 6:
   if len(user_letter) > 1:
     print('Please enter a single letter')
     continue
+  if user_letter == ".":
+    print('You have quit the game.')
+    continue
   if user_letter.isalpha() is not True:
     print('Please enter a letter')
     continue
@@ -37,7 +40,6 @@ while '_' in guessed_word and user_letter != '.' and bad_guesses < 6:
     continue
   else:
     pre_guessed_letters += user_letter
-
   if user_letter in random_word:
     print(f"You guessed the letter {user_letter} correctly!")
     indexes = [i for i, x in enumerate(random_word) if x == user_letter]
@@ -52,4 +54,3 @@ while '_' in guessed_word and user_letter != '.' and bad_guesses < 6:
     bad_guesses += 1
   if bad_guesses == 6:
     print('You Lost! The word was ' + random_word)
-      
