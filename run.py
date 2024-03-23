@@ -28,6 +28,9 @@ while '_' in guessed_word and user_letter != '.' and bad_guesses < 6:
   if len(user_letter) > 1:
     print('Please enter a single letter')
     continue
+  if user_letter.isalpha() is not True:
+    print('Please enter a letter')
+    continue
   if user_letter in pre_guessed_letters:
     print('You have already guessed this letter')
     print(' '.join(guessed_word))
