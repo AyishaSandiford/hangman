@@ -136,7 +136,7 @@ startInput = None
 while startInput != "h" and startInput != "":
     print("Enter 'h' to see the game instructions or press Enter to continue")
     lines()
-    startInput = input('Enter here: ').lower()
+    startInput = input("Enter here:\n").lower()
     lines()
 
 # If 'h' is entered, show help text
@@ -160,7 +160,7 @@ while '_' in gameState["guessed_word"] \
     lines()
     turnLine()
     lines()
-    gameState["guessed_letter"] = input('Enter a letter: ').upper()
+    gameState["guessed_letter"] = input("Enter a letter:/n").upper()
     lines()
 
     if (validateGuess(gameState) is False):
