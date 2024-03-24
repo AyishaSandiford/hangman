@@ -85,3 +85,19 @@ def incorrectLetterGuessed(gameState):
   print(f"You guessed the letter {gameState['guessed_letter']} incorrectly!")
   lines()
 
+# Print part of hang man correspoding to the number of bad guesses
+  print(stages[gameState["bad_guesses_count"]])
+
+  # Increment number of bad guesses
+  gameState["bad_guesses_count"] += 1
+
+# Remember that a letter was guessed so we can check and prevent it
+# from being guessed again
+def noteGuessedLetter(gameState):
+  gameState["guessed_letters"] += gameState["guessed_letter"]
+
+# Print the result of a finished game
+def printGameResult(gameState):
+  lines()
+
+  
