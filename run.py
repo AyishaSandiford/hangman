@@ -99,5 +99,15 @@ def noteGuessedLetter(gameState):
 # Print the result of a finished game
 def printGameResult(gameState):
   lines()
+if gameState["bad_guesses_count"] == 6:
+    print(f'You Lost! The word was {gameState["random_word"]}')
+    return
 
+  if '_' not in gameState["guessed_word"] :
+    print(
+      f'You Won! The you guessed all the letters in the word {gameState["random_word"]}'
+    )
+    return
+
+  print("You've ended the game")
   
