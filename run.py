@@ -5,32 +5,7 @@ from hang_stage import stages
 from how_to_play import how_to_play_game
 
 
-print("""
-__        __   _                            _____      
-\\ \\      / /__| | ___ ___  _ __ ___   ___  |_   _|__   
- \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\   | |/ _ \\  
-  \\ V  V /  __/ | (_| (_) | | | | | |  __/   | | (_) | 
- _ \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|   |_|\\___/  
-| | | | __ _ _ __   __ _ _ __ ___   __ _ _ __          
-| |_| |/ _` | '_ \\ / _` | '_ ` _ \\ / _` | '_ \\         
-|  _  | (_| | | | | (_| | | | | | | (_| | | | |        
-|_|_|_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|        
- / ___| __ _ _ __ _|___/___                            
-| |  _ / _` | '_ ` _ \\ / _ \\                           
-| |_| | (_| | | | | | |  __/                           
- \\____|\\__,_|_| |_| |_|\\___|                           
-                                                
-""")
 
-
-# Initialise game state
-gameState = {
-  "random_word": "",
-  "guessed_letters": [],
-  "guessed_letter": "",
-  "guessed_word": "",
-  "bad_guesses_count": 0, 
-}
 
 def lines(numberOfLines = 1):
   print('\n' * numberOfLines)
@@ -103,11 +78,58 @@ if gameState["bad_guesses_count"] == 6:
     print(f'You Lost! The word was {gameState["random_word"]}')
     return
 
-  if '_' not in gameState["guessed_word"] :
+if '_' not in gameState["guessed_word"] :
     print(
       f'You Won! The you guessed all the letters in the word {gameState["random_word"]}'
     )
     return
 
-  print("You've ended the game")
+print("You've ended the game")
+
+  # Show help text
+def showHelp():
+  lines()
+  print(how_to_play_game)
+  lines()
+  print('Enter any value to start the game...')
+  lines()
+  input()
   
+print("""
+  __        __   _                            _____      
+  \\ \\      / /__| | ___ ___  _ __ ___   ___  |_   _|__   
+  \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\   | |/ _ \\  
+    \\ V  V /  __/ | (_| (_) | | | | | |  __/   | | (_) | 
+  _ \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|   |_|\\___/  
+  | | | | __ _ _ __   __ _ _ __ ___   __ _ _ __          
+  | |_| |/ _` | '_ \\ / _` | '_ ` _ \\ / _` | '_ \\         
+  |  _  | (_| | | | | (_| | | | | | | (_| | | | |        
+  |_|_|_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|        
+  / ___| __ _ _ __ _|___/___                            
+  | |  _ / _` | '_ ` _ \\ / _ \\                           
+  | |_| | (_| | | | | | |  __/                           
+  \\____|\\__,_|_| |_| |_|\\___|                           
+                                                
+""")
+
+# Initialise game state
+gameState = {
+  "random_word": "",
+  "guessed_letters": [],
+  "guessed_letter": "",
+  "guessed_word": "",
+  "bad_guesses_count": 0, 
+}
+
+startInput = None
+
+# Loop until user enters a valid input: 'h' or just press enter
+while startInput != "h" and startInput != "":
+  print("Enter 'h' to see the game instructions or press Enter to continue")
+  lines()
+  startInput = input('Enter here: ').lower()
+  lines()
+
+# If 'h' is entered, show help text
+if startInput == 'h':
+  showHelp()
