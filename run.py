@@ -4,9 +4,6 @@ from word_list import hidden_word_list_level_one
 from hang_stage import stages
 from how_to_play import how_to_play_game
 
-
-
-
 def lines(numberOfLines = 1):
   print('\n' * numberOfLines)
 
@@ -82,7 +79,7 @@ def printGameResult(gameState):
       f'You Won! The you guessed all the letters in the word {gameState["random_word"]}')
       return
 
-print("You've ended the game")
+  print("You've ended the game")
 
   # Show help text
 def showHelp():
@@ -135,13 +132,34 @@ if startInput == 'h':
   # Select a random word from the word list and convert all characters to uppercase
 gameState["random_word"] = random.choice(hidden_word_list_level_one).upper()
 
-# Todo: remove these line - this is for development only
-print(f'The random word is {gameState["random_word"]}.')
-lines()
-
 # guessed_word represented by "_" by default is as long as the hidden random_word 
 gameState["guessed_word"] = list('_' * len(gameState["random_word"]))
 
 lines()
 printGuessedWord(gameState)
+
+# loop until the user guesses the word but allow the loop to break with a . 
+while '_' in gameState["guessed_word"] \
+  and gameState["guessed_letter"] != '.' \
+  and gameState["bad_guesses_count"] < 6:
+  lines()
+  turnLine()
+  lines()
+  gameState["guessed_letter"] = input('Enter a letter: ').upper()
+  lines()
+
+  if (validateGuess(gameState) is False):
+    continue
+
+  noteGuessedLetter(gameState)
+
+  if gameState["guessed_letter"] in gameState["random_word"]:
+    correctLetterGuessed(gameState)
+  else:
+    incorrectLetterGuessed(gameState)
+
+  lines()
+  printGuessedWord(gameState)
+
+printGameResult(gameState)
 
