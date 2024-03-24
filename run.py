@@ -64,3 +64,24 @@ def validateGuess(gameState):
     return False
 
   return True
+
+  # Replace each blank with the guessed letter
+def updateGuessedWord(gameState):
+  indexes = [
+    i for i,
+    x in enumerate(gameState["random_word"])
+    if x == gameState["guessed_letter"]
+  ]
+  for letterLocation in indexes:
+    gameState["guessed_word"][letterLocation] = gameState["guessed_letter"]
+
+# React to correct letter being guessed
+def correctLetterGuessed(gameState):
+  updateGuessedWord(gameState)
+  print(f"You guessed the letter {gameState['guessed_letter']} correctly!")
+
+# React to bad letter being guessed
+def incorrectLetterGuessed(gameState):
+  print(f"You guessed the letter {gameState['guessed_letter']} incorrectly!")
+  lines()
+
