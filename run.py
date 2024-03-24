@@ -44,3 +44,23 @@ def printGuessedWord(gameState):
   print(' '.join(gameState["guessed_word"]))
   lines()
   print('Guessed letters: ' + ', '.join(gameState["guessed_letters"]))
+
+  # Check if the guess is valid. E.g. it is a single letter
+def validateGuess(gameState):
+  if len(gameState["guessed_letter"]) > 1:
+    print('Please enter a single letter')
+    return False
+
+  if gameState["guessed_letter"] == ".":
+    return False
+
+  if gameState["guessed_letter"].isalpha() is False:
+    print('Please enter a letter')
+    return False
+
+  if gameState["guessed_letter"] in gameState["guessed_letters"]:
+    print('You have already guessed this letter')
+    printGuessedWord(gameState)
+    return False
+
+  return True
