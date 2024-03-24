@@ -37,7 +37,6 @@ def validateGuess(gameState):
     print('You have already guessed this letter')
     printGuessedWord(gameState)
     return False
-
   return True
 
   # Replace each blank with the guessed letter
@@ -74,15 +73,14 @@ def noteGuessedLetter(gameState):
 # Print the result of a finished game
 def printGameResult(gameState):
   lines()
-if gameState["bad_guesses_count"] == 6:
-    print(f'You Lost! The word was {gameState["random_word"]}')
-    return
+  if gameState["bad_guesses_count"] == 6:
+      print(f'You Lost! The word was {gameState["random_word"]}')
+      return
 
-if '_' not in gameState["guessed_word"] :
-    print(
-      f'You Won! The you guessed all the letters in the word {gameState["random_word"]}'
-    )
-    return
+  if '_' not in gameState["guessed_word"] :
+      print(
+      f'You Won! The you guessed all the letters in the word {gameState["random_word"]}')
+      return
 
 print("You've ended the game")
 
@@ -133,3 +131,17 @@ while startInput != "h" and startInput != "":
 # If 'h' is entered, show help text
 if startInput == 'h':
   showHelp()
+
+  # Select a random word from the word list and convert all characters to uppercase
+gameState["random_word"] = random.choice(hidden_word_list_level_one).upper()
+
+# Todo: remove these line - this is for development only
+print(f'The random word is {gameState["random_word"]}.')
+lines()
+
+# guessed_word represented by "_" by default is as long as the hidden random_word 
+gameState["guessed_word"] = list('_' * len(gameState["random_word"]))
+
+lines()
+printGuessedWord(gameState)
+
